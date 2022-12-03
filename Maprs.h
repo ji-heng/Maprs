@@ -127,7 +127,7 @@ void setMaprsLongitude(double longitude,char flag);
 char setMaprsObjectName(char *objectname);
 //void setMaprsTimeIndicatorType(void);
 
-//============git============
+//============get============
 char getMaprsReportHead(enum MaprsReportType reporttype);
 char getMaprsSymTableID(void);
 char getMaprsSymbolCode(void);
