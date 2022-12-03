@@ -39,7 +39,7 @@ void decimal2DMS(double decimalDegrees,struct DMS *DMS){
 }
 
 
-char gitMaprsReportHead(enum MaprsReportType reporttype){
+char getMaprsReportHead(enum MaprsReportType reporttype){
     switch (reporttype){
     case LATLONG:
         return MaprsReportHead[MaprsUseConfig.UseComment][MaprsUseConfig.UseTimestamp];
