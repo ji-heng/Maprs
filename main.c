@@ -30,6 +30,7 @@ int main(void){
     MaprsUseConfig.MaprsBRGNRQ.BRG = 270;
     MaprsUseConfig.MaprsBRGNRQ.NRQ = 729;
 
+    //Show Report
     MaprsLatLongReport();
     printf("\n");
     MaprsDFReport();
