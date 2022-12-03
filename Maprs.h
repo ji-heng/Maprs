@@ -128,22 +128,22 @@ char setMaprsObjectName(char *objectname);
 //void setMaprsTimeIndicatorType(void);
 
 //============git============
-char gitMaprsReportHead(enum MaprsReportType reporttype);
-char gitMaprsSymTableID(void);
-char gitMaprsSymbolCode(void);
-char *gitMapesDataExtension(enum MaprsReportType type);
-char *gitMaprsPHG(void);
-char *gitMaprsDFS(void);
-char *gitMaprsRNG(void);
-char *gitMaprsCSESPD(void);
-char *gitMaprsBRGNRQ(void);
-char *gitMaprsComment(void);
-char *gitMaprsLatitude(void);
-char *gitMaprsLongitude(void);
-char *gitMaprsTimeStamp(void);
-char *gitMaprsDHM(void);
-char *gitMaprsObjectName(void);
-char gitMaprsObjectState(enum MaprsObjectState objectstate);
+char getMaprsReportHead(enum MaprsReportType reporttype);
+char getMaprsSymTableID(void);
+char getMaprsSymbolCode(void);
+char *getMapesDataExtension(enum MaprsReportType type);
+char *getMaprsPHG(void);
+char *getMaprsDFS(void);
+char *getMaprsRNG(void);
+char *getMaprsCSESPD(void);
+char *getMaprsBRGNRQ(void);
+char *getMaprsComment(void);
+char *getMaprsLatitude(void);
+char *getMaprsLongitude(void);
+char *getMaprsTimeStamp(void);
+char *getMaprsDHM(void);
+char *getMaprsObjectName(void);
+char getMaprsObjectState(enum MaprsObjectState objectstate);
 //============report============
 void MaprsLatLongReport(void);
 void MaprsMaidenheadReport(void);
