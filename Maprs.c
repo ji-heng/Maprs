@@ -56,17 +56,17 @@ char getMaprsReportHead(enum MaprsReportType reporttype){
     }
 }
 
-char *gitMaprsDHM(void){
+char *getMaprsDHM(void){
     static char DHMstr[8];
     sprintf(DHMstr,"092345%c",MaprsUseConfig.TimeIndicator);
     return DHMstr;
 }
 
-char *gitMaprsTimeStamp(void){
+char *getMaprsTimeStamp(void){
     if(MaprsUseConfig.UseTimestamp){
         switch (MaprsUseConfig.TimestampType){
         case TIME_DHM:
-            return gitMaprsDHM();
+            return getMaprsDHM();
             break;
         case TIME_HMS:
             /* code */
@@ -92,7 +92,7 @@ void setMaprsLatitude(double latitude,char flag){
     DEBUG("latitude.Second = %d\n",MaprsUseConfig.Latlong.latitude.Second);
 }
 
-char *gitMaprsLongitude(void){
+char *getMaprsLongitude(void){
      static char longstr[10];
      sprintf(longstr,"%03d%02d.%02d%c",MaprsUseConfig.Latlong.longitude.Hour,MaprsUseConfig.Latlong.longitude.Minute,MaprsUseConfig.Latlong.longitude.Second,MaprsUseConfig.Latlong.longFlag);
      return longstr;
@@ -106,7 +106,7 @@ void setMaprsLongitude(double longitude,char flag){
     DEBUG("longitude.Second = %d\n",MaprsUseConfig.Latlong.longitude.Second);
 }
 
-char *gitMaprsComment(void){
+char *getMaprsComment(void){
     if(MaprsUseConfig.UseComment){
         return MaprsUseConfig.Comment;
     }else{
@@ -114,7 +114,7 @@ char *gitMaprsComment(void){
     }
 }
 
-char *gitMaprsPHG(void){
+char *getMaprsPHG(void){
     static char phgstr[8];
     sprintf(phgstr,"PHG%d%d%d%d",MaprsUseConfig.PHG.Power,MaprsUseConfig.PHG.Height,MaprsUseConfig.PHG.Gain,MaprsUseConfig.PHG.Directivity);
     return phgstr;
@@ -136,7 +136,7 @@ void SetMaprsPHG(uint16_t power,uint16_t height,uint16_t gain,uint16_t directivi
     DEBUG("PHG.Directivity = %d (deg)\n",MaprsUseConfig.PHG.Directivity);
 }
 
-char *gitMaprsRNG(void){
+char *getMaprsRNG(void){
     static char rngstr[8];
     sprintf(rngstr,"RNG%04d",MaprsUseConfig.RNG);
     return rngstr;
@@ -146,7 +146,7 @@ void SetMaprsRNG(uint16_t rng){
     MaprsUseConfig.RNG = rng>9999?9999:rng;
 }
 
-char *gitMaprsDFS(void){
+char *getMaprsDFS(void){
     static char dfsstr[8];
     sprintf(dfsstr,"DFS%d%d%d%d",MaprsUseConfig.DFS.Strength,MaprsUseConfig.DFS.Height,MaprsUseConfig.DFS.Gain,MaprsUseConfig.DFS.Directivity);
     return dfsstr;
@@ -167,33 +167,33 @@ void SetMaprsDFS(uint16_t strength, uint16_t height, uint16_t gain, uint16_t dir
     DEBUG("DFS.Directivity = %d (deg)\n",MaprsUseConfig.DFS.Directivity);
 }
 
-char *gitMaprsCSESPD(void){
+char *getMaprsCSESPD(void){
     static char csespdstr[8];
     sprintf(csespdstr,"%03d/%03d",MaprsUseConfig.CSESPD.CSE,MaprsUseConfig.CSESPD.SPD);
     return csespdstr;
 }
 
-char *gitMaprsBRGNRQ(void){
+char *getMaprsBRGNRQ(void){
     static char brgnrqtr[9];
     sprintf(brgnrqtr,"/%03d/%03d",MaprsUseConfig.MaprsBRGNRQ.BRG,MaprsUseConfig.MaprsBRGNRQ.NRQ);
     return brgnrqtr;
 }
 
-char *gitMapesDataExtension(enum MaprsReportType type){
+char *getMapesDataExtension(enum MaprsReportType type){
    if (type == DF){
-       return gitMaprsCSESPD();
+       return getMaprsCSESPD();
    };
    if(MaprsUseConfig.UseDataExtension){
         switch (MaprsUseConfig.DataExtensionType)
         {
         case PHG:
-            return gitMaprsPHG();
+            return getMaprsPHG();
         case RNG:
-            return gitMaprsRNG();
+            return getMaprsRNG();
         case DFS:
-            return gitMaprsDFS();
+            return getMaprsDFS();
         case CSESPD:
-            return gitMaprsCSESPD();  
+            return getMaprsCSESPD();  
         default:
             return "\0";
             break;
@@ -208,7 +208,7 @@ void setMaprsSymTableID(char symboltalbe){
     }
 }
 
-char gitMaprsSymTableID(void)
+char getMaprsSymTableID(void)
 {
     return MaprsUseConfig.SymTableID;
 }
@@ -219,12 +219,12 @@ void setMaprsSymbolCode(unsigned char symbolcode){
     }
 }
 
-char gitMaprsSymbolCode(void)
+char getMaprsSymbolCode(void)
 {
     return MaprsUseConfig.SymbolCode;
 }
 
-char *gitMaprsObjectName(void){
+char *getMaprsObjectName(void){
     return MaprsUseConfig.objectname;
 }
 
@@ -239,7 +239,7 @@ char setMaprsObjectName(char *objectname){
     MaprsUseConfig.objectname[9] = '\0';
 }
 
-char gitMaprsObjectState(enum MaprsObjectState objectstate){
+char getMaprsObjectState(enum MaprsObjectState objectstate){
     switch (objectstate)
     {
     case LIVE:
@@ -255,14 +255,14 @@ char gitMaprsObjectState(enum MaprsObjectState objectstate){
 
 void MaprsLatLongReport(void)
 {
-     printf("%c%s%s%c%s%c%s%s\n",gitMaprsReportHead(LATLONG),gitMaprsTimeStamp(),girMaprsLatitude(),gitMaprsSymTableID(),gitMaprsLongitude(),gitMaprsSymbolCode(),gitMapesDataExtension(LATLONG),gitMaprsComment());
+     printf("%c%s%s%c%s%c%s%s\n",getMaprsReportHead(LATLONG),getMaprsTimeStamp(),girMaprsLatitude(),getMaprsSymTableID(),getMaprsLongitude(),getMaprsSymbolCode(),getMapesDataExtension(LATLONG),getMaprsComment());
 }
 
 void MaprsDFReport(void){
-    printf("%c%s%s%c%s%c%s%s%s\n",gitMaprsReportHead(LATLONG),gitMaprsTimeStamp(),girMaprsLatitude(),gitMaprsSymTableID(),gitMaprsLongitude(),gitMaprsSymbolCode(),gitMapesDataExtension(DF),gitMaprsBRGNRQ(),gitMaprsComment());
+    printf("%c%s%s%c%s%c%s%s%s\n",getMaprsReportHead(LATLONG),getMaprsTimeStamp(),girMaprsLatitude(),getMaprsSymTableID(),getMaprsLongitude(),getMaprsSymbolCode(),getMapesDataExtension(DF),getMaprsBRGNRQ(),getMaprsComment());
 }
 
 void MaprsObjectReport(void){
     MaprsUseConfig.UseTimestamp = true;
-    printf("%c%s%c%s\n",gitMaprsReportHead(OBJECT),gitMaprsObjectName(),gitMaprsObjectState(LIVE),gitMaprsTimeStamp());
+    printf("%c%s%c%s\n",getMaprsReportHead(OBJECT),getMaprsObjectName(),getMaprsObjectState(LIVE),getMaprsTimeStamp());
 }
