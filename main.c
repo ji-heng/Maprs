@@ -14,8 +14,8 @@ int main(void){
 
     memcpy(&MaprsUseConfig.Comment, "Helloword", 10);
 
-    setMaprsLatitude(39.96496105539069, 'E');
-    setMaprsLongitude(116.12796296093748, 'N');
+    setMaprsLatitude(49.00000000000000, 'E');
+    setMaprsLongitude(113.00000000000000, 'N');
     setMaprsSymTableID('\\');
     setMaprsSymbolCode('r');
     SetMaprsPHG(500,25,10,80);
